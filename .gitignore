@@ -1,0 +1,7 @@
+# Lixo de SO
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Artefatos de build/empacotamento da skill
+*.zip
