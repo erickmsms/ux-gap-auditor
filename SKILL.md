@@ -9,7 +9,8 @@ description: >-
   components, and flows. Produces a prioritized, file-and-line-referenced report of UX problems with
   concrete fixes — never a redesign of how things look. Combines Nielsen's 10 usability heuristics with
   code-level detection signals, the interaction laws (Hick, Fitts, Miller, Doherty), state/feedback
-  coverage, flow/IA analysis, and operable-accessibility checks.
+  coverage, flow/IA analysis, operable-accessibility checks, and an anti-scroll/viewport-fit policy for
+  overlays (modals, drawers, popovers must show their content and actions without scroll-hunting).
   Make sure to use this skill whenever the user wants a UX audit, usability review, heuristic evaluation,
   flow review, friction map, or "find UX problems / UX gaps" in their repo or app — even if they don't
   say the word "skill". Triggers on: UX audit, usability audit, heuristic evaluation, Nielsen review,
@@ -55,6 +56,9 @@ This is a **UX-only** audit. The boundary is not a suggestion — it is the whol
 - **Accessibility *as operability*** (the UX of being able to use it at all): keyboard operability, focus
   presence & order, tab traps, target size, screen-reader semantics, reduced-motion, form labels for
   recognition. → `references/operable-accessibility.md`
+- **Anti-scroll / viewport fit** (overlays must show their content and actions without scroll-hunting):
+  modals, dialogs, drawers, and content popovers that fit the viewport with a pinned header/footer and an
+  internal scroll area; confirm/cancel actions never below the fold. → `references/anti-scroll.md`
 
 ### ❌ OUT OF SCOPE — do NOT flag these (visual/UI/aesthetic — the user has these handled)
 - Typography (font choice, sizes, line-height, type scale)
@@ -70,6 +74,10 @@ are **out of scope by default**. But the *presence* of a focus indicator (e.g. `
 replacement) is an operability gap and **is** in scope — a keyboard user who can't see focus literally
 can't use the product. When in doubt: if the gap blocks or confuses a real interaction → in scope. If it's
 about how polished something looks → out of scope.
+
+The same logic applies to overlays fitting the viewport: *whether* a user can reach a modal's content and
+actions without scrolling is operability (in scope); how much padding or what radius the modal has is visual
+(out of scope). → `references/anti-scroll.md`
 
 If you ever catch yourself writing "consider a larger font" or "use a warmer color" — stop. That's the UI
 skill's job, not this one.
@@ -92,7 +100,7 @@ state that's never rendered) over guesses. Cite `file:line` for every finding.
 
 ---
 
-## Step 2 — Run the six lenses
+## Step 2 — Run the seven lenses
 
 Walk the target through each lens below. Each has a dedicated reference file with **code-level detection
 signals** (what pattern in the source indicates the gap) and fixes. Read the reference file before auditing
@@ -106,6 +114,7 @@ that lens so your findings are precise and not generic advice.
 | 4 | Interaction cost | `references/interaction-laws.md` | Is the interaction cheap in decisions, motor effort, memory, and perceived time? |
 | 5 | Flows & IA | `references/flows-ia.md` | Can users get where they're going, back out, and never lose progress? |
 | 6 | Operable accessibility | `references/operable-accessibility.md` | Can people actually operate this with keyboard / screen reader / assistive tech? |
+| 7 | Anti-scroll / viewport fit | `references/anti-scroll.md` | Do overlays (modals, drawers, popovers) show all content and actions without scroll-hunting? |
 
 Evaluate the product **as a new user**, then **as a returning power user**, then **walk each real task flow
 end to end** (including the unhappy paths: network failure, validation error, empty data, interrupted flow).

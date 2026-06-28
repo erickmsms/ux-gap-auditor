@@ -1,8 +1,9 @@
 # UX Gap Auditor — a UX-only Claude skill
 
 A Claude skill that walks a **codebase** and maps **user-experience gaps and improvements only** —
-usability, interaction cost, flows, information architecture, microcopy, system feedback, and
-accessibility-as-operability. It deliberately **ignores the visual/UI layer** (typography, color, spacing,
+usability, interaction cost, flows, information architecture, microcopy, system feedback,
+accessibility-as-operability, and an anti-scroll/viewport-fit policy for overlays. It deliberately **ignores
+the visual/UI layer** (typography, color, spacing,
 shadows, radius, dark-mode look, icon styling), because it's built for the case where the aesthetics are
 already done and you only want the behavioral/usability furos surfaced.
 
@@ -50,7 +51,8 @@ Download this repo as a ZIP, unzip it, and place the folder so the path ends in
             ├── microcopy.md
             ├── interaction-laws.md
             ├── flows-ia.md
-            └── operable-accessibility.md
+            ├── operable-accessibility.md
+            └── anti-scroll.md
 ```
 
 ## Use it
@@ -63,7 +65,7 @@ audit / usability requests:
 It responds in the language you write in. To confirm it loaded, run `/skills` (or ask "which skills do you
 have?") and look for **ux-gap-auditor**.
 
-## The six lenses
+## The seven lenses
 | Lens | Reference file |
 |---|---|
 | Usability heuristics (Nielsen, with code detection) | `references/heuristics.md` |
@@ -72,6 +74,7 @@ have?") and look for **ux-gap-auditor**.
 | Interaction cost (Hick · Fitts · Miller · Doherty) | `references/interaction-laws.md` |
 | Flows & information architecture | `references/flows-ia.md` |
 | Operable accessibility (a11y as usability, no contrast/color) | `references/operable-accessibility.md` |
+| Anti-scroll / viewport fit (overlays fit the viewport, actions never below the fold) | `references/anti-scroll.md` |
 
 ## Scope boundary
 In scope: anything that affects how the product *behaves and guides the user*.
@@ -86,5 +89,10 @@ This skill combines and reframes material from two open-source projects, kept to
 - **designer-skills** by Owl-Listener (the modular Designer Skills Collection) — source of the heuristic
   evaluation method, the interaction laws (Hick/Fitts/Miller/Doherty), error-handling, loading/feedback
   patterns, information architecture, user flows, onboarding, search UX, and the accessibility test ladder.
+- **Anti-scroll / viewport-fit lens** (`references/anti-scroll.md`) — an original addition to this skill,
+  grounded in published platform/standards guidance: Material Design dialogs (pinned title/actions when
+  content scrolls), Apple HIG (sheets/popovers/action sheets should size to their content and avoid
+  scrolling), NN/g (Overuse of Overlays; "Scrolling and Attention" / the Illusion of Completeness), and
+  WCAG 2.1 SC 1.4.10 Reflow.
 
 All visual/UI guidance from both sources was deliberately excluded to keep this a pure UX audit.
