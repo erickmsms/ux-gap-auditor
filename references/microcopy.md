@@ -108,6 +108,33 @@ Rule: one word per concept; keep a short glossary; every label/button/confirmati
 
 ---
 
+## Data formatting (dates, numbers, units)
+
+Functional content includes the *values* shown, not just the labels. Ambiguous or raw formatting forces
+users to decode or mis-read data — a match-the-real-world failure (H2), not a visual choice.
+
+| ❌ Ambiguous / raw | ✅ Clear |
+|---|---|
+| 01/02/03 | Feb 1, 2003 (locale-aware) / "2 days ago" |
+| 1234567 | 1,234,567 / 1.2M |
+| 2026-06-28T14:00:00Z | "Today at 2:00 PM" |
+| 4500 (cents? dollars?) | $45.00 |
+
+**Detection signals**
+```
+→ date in a numeric-only format with cross-region ambiguity (01/02/03 — is it Jan 2 or Feb 1?) and no
+   explicit month / locale-aware formatting → S2
+→ raw ISO timestamp or epoch shown to the user instead of a friendly or relative date → S2
+→ large number with no thousand separators or abbreviation (1234567) → S1 (hard to scan — also Miller)
+→ currency / measurement shown with no unit, or as raw minor units (4500 meaning $45.00) → S2
+→ relative time ("2 hours ago") with no absolute timestamp on hover/title when precision matters → S1
+```
+Rules: prefer locale-aware or relative dates; separate or abbreviate large numbers; always show the unit;
+pair a relative time with an absolute one (tooltip/`title`) when exactness matters. (Number chunking →
+`interaction-laws.md`, Miller's law.)
+
+---
+
 ## Confirmation & success copy
 
 | Action | ✅ Confirmation |

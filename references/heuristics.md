@@ -116,7 +116,9 @@ Fix: one word per concept (keep a glossary); reuse the same control for the same
 Signal: free-text input where a constrained control fits (date typed as text vs date picker);
         destructive control adjacent to a common one with identical weight; no inline validation before
         an expensive submit; no auto-save on a long form (data-loss risk). → S3 for data-loss risks
-Fix: constrain inputs, separate destructive actions, validate inline, auto-save long forms.
+        password field with no show/hide toggle (user can't verify what they typed before submitting) → S2
+Fix: constrain inputs, separate destructive actions, validate inline, auto-save long forms; offer a
+     show/hide toggle on password fields so users can catch typos before submitting.
 ```
 
 ---
@@ -155,8 +157,13 @@ admin UIs; rarely needed in simple consumer apps.
 ```
 Signal: complex/frequent actions (save, search, new) with no keyboard shortcut → S1/S2 on power-user
         tools; management list (inbox, files, tasks, orders, 10+ items) with no bulk-select → S2;
-        user settings/preferences not persisted across sessions → S2.
-Fix: add shortcut hints ("Save ⌘S"), bulk selection on management lists, and persist preferences.
+        user settings/preferences not persisted across sessions → S2;
+        form inputs the browser can't autofill — autocomplete="off" on standard fields (name, email,
+        address) or missing autocomplete tokens → S2 (forces manual re-typing; applies to ANY app with
+        forms, not only power-user tools).
+Fix: add shortcut hints ("Save ⌘S"), bulk selection on management lists, persist preferences, and let the
+     browser autofill (correct autocomplete tokens like email/name/street-address; never blanket
+     autocomplete="off").
 ```
 
 ---
@@ -207,7 +214,9 @@ Fix: show requirements before submit (not only in the error); add contextual hel
 - [ ] Every modal has a close + Escape (H3a)
 - [ ] Destructive actions confirm and/or offer undo (H3c)
 - [ ] One word per concept across the app (H4)
-- [ ] Inputs constrained to prevent errors; long forms auto-save (H5)
+- [ ] Inputs constrained to prevent errors; long forms auto-save; password fields offer show/hide (H5)
 - [ ] Labels persist; selections reflected back (H6)
+- [ ] Forms let the browser autofill (correct autocomplete tokens, never blanket off) (H7)
+- [ ] Data formatted for humans: locale/relative dates, separated numbers, units (H2)
 - [ ] Error messages: what's wrong + how to fix; input preserved (H9)
 - [ ] Constrained/technical fields and empty states have guidance (H10)
